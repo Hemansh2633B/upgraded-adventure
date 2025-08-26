@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CBSE Class 10 Study Planner (Aug–Dec 2025) — White × Red</title>
+  <style>
+    :root{
+      /* Vibrant white + red theme */
+      --bg:#ffffff;
+      --panel:#ffffff;
+      --muted:#6b7280;        /* gray-500 */
+      --text:#0f172a;         /* slate-900 */
+      --subtle:#f8fafc;       /* slate-50 */
+      --border:#e5e7eb;       /* gray-200 */
+      --accent:#ef4444;       /* red-500 */
+      --accent-2:#dc2626;     /* red-600 */
+      --accent-3:#b91c1c;     /* red-700 */
+      --accent-soft:#fee2e2;  /* red-100 */
+      --ok:#16a34a;           /* green-600 */
+      --warn:#f59e0b;         /* amber-500 */
+      --ring: 0 0 0 3px rgba(239,68,68,.25);
+      --shadow: 0 16px 40px rgba(220,38,38,0.12);
+      --shadow-sm: 0 6px 20px rgba(239,68,68,0.10);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,Apple Color Emoji,Segoe UI Emoji}
+    a{color:var(--accent-2); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{max-width:1100px; margin:24px auto 64px; padding:0 16px}
+
+    header{position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); background:rgba(255,255,255,.9); border-bottom:1px solid var(--border)}
+    header .bar{display:flex; align-items:center; gap:12px; padding:12px 16px; max-width:1100px; margin:0 auto}
+    header h1{font-size:20px; margin:0; letter-spacing:.2px}
+
+    .btn{appearance:none; border:1px solid var(--accent-2); background:#fff; color:var(--accent-2); padding:10px 14px; border-radius:12px; cursor:pointer; transition:transform .06s ease, box-shadow .2s ease, background .2s ease,border-color .2s ease; box-shadow:var(--shadow-sm)}
+    .btn:hover{background:var(--accent-soft); border-color:var(--accent)}
+    .btn:focus-visible{outline:none; box-shadow:var(--ring)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:linear-gradient(180deg,var(--accent),var(--accent-2)); color:#fff; border:none}
+    .btn.warn{background:linear-gradient(180deg,var(--warn),#d97706); color:#fff; border:none}
+    .btn.ghost{background:#fff; border-color:var(--border); color:var(--text)}
+
+    .legend{margin-left:auto; display:flex; align-items:center; gap:12px; color:var(--muted); font-size:14px}
+    .dot{width:10px; height:10px; border-radius:999px; display:inline-block; background:linear-gradient(180deg,var(--accent),var(--accent-2)); margin-right:6px; box-shadow:0 0 0 3px #fecaca}
+
+    .section{margin-top:24px; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--panel); box-shadow:var(--shadow)}
+    details.month{border-bottom:1px solid var(--border)}
+    summary{list-style:none; cursor:pointer; padding:16px; font-weight:800; display:flex; align-items:center; justify-content:space-between; background:linear-gradient(180deg,#fff,#fff)}
+    summary::-webkit-details-marker{display:none}
+    .summary-left{display:flex; align-items:center; gap:10px}
+    .pill{padding:4px 10px; font-size:12px; border-radius:999px; background:var(--subtle); border:1px solid var(--border); color:var(--muted)}
+    .pill.red{background:var(--accent-soft); color:var(--accent-2); border-color:#fecaca}
+    .month-body{padding:8px 16px 16px}
+
+    .week{border:1px dashed #fecaca; border-radius:14px; padding:12px; margin-top:12px; background:#fff}
+    .week h3{margin:0 0 8px; font-size:16px; display:flex; align-items:center; gap:10px}
+    .week .controls{margin-left:auto; display:flex; gap:8px; align-items:center}
+
+    .grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+    @media (min-width:960px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+    .card{border:1px solid var(--border); border-radius:14px; padding:10px; background:#fff}
+    .card h4{margin:0 0 8px; font-size:14px; color:#374151; letter-spacing:.2px; display:flex; align-items:center; gap:6px}
+    .badge{font-size:11px; padding:2px 8px; border-radius:999px; background:var(--accent-soft); color:var(--accent-2); border:1px solid #fecaca}
+
+    ul.checklist{list-style:none; padding:0; margin:0}
+    ul.checklist li{display:flex; align-items:flex-start; gap:10px; padding:7px 8px; border-radius:10px; transition:background .2s ease, transform .08s ease}
+    ul.checklist li:hover{background:var(--subtle)}
+    ul.checklist li .prio{font-size:10px; padding:2px 6px; border-radius:999px; border:1px solid #fecaca; background:#fff; color:var(--accent-3)}
+    input[type="checkbox"]{width:20px; height:20px; accent-color:var(--accent); cursor:pointer}
+    .item-text{flex:1}
+    .done .item-text{color:#6b7280; text-decoration:line-through;}
+    .done{background:#f9fafb}
+
+    .add-row{display:flex; gap:6px; margin-top:8px}
+    .add-row input{flex:1; padding:8px 10px; border:1px solid var(--border); border-radius:10px}
+    .add-row input:focus{outline:none; box-shadow:var(--ring); border-color:#fecaca}
+    .add-row .btn{padding:8px 10px}
+
+    .progress{height:10px; background:#fff; border-radius:999px; overflow:hidden; border:1px solid var(--border)}
+    .progress>span{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); width:0%; transition:width .3s ease}
+
+    .footer-note{color:var(--muted); font-size:13px; margin-top:18px}
+
+    /* Timetable */
+    .timetable{display:grid; gap:12px; padding:12px; background:#fff}
+    .slots{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+    @media (min-width:960px){.slots{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    .slot{border:1px solid var(--border); border-radius:14px; padding:10px; background:#fff; position:relative}
+    .slot h4{margin:0 0 8px; font-size:14px}
+    .slot .range{font-size:12px; color:var(--muted)}
+    .slot ul{list-style:none; padding:0; margin:8px 0 0}
+    .slot li{display:flex; align-items:center; gap:8px; padding:6px 6px; border-radius:8px}
+    .slot li:hover{background:var(--subtle)}
+
+    .controls-row{display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:8px 12px; background:var(--subtle); border-top:1px solid var(--border)}
+    .controls-row label{font-size:12px; color:#374151}
+    .controls-row input[type="time"]{padding:6px 8px; border:1px solid var(--border); border-radius:10px; background:#fff}
+
+    .mini{font-size:11px; color:var(--muted)}
+
+    /* Print */
+    @media print{
+      header{position:static; background:transparent; border:none}
+      .btn,.legend,.controls-row{display:none!important}
+      body{background:#ffffff; color:#111}
+      .section,.week,.card,.slot{background:#fff!important; border-color:#d1d5db}
+      input[type="checkbox"]{transform:scale(.9)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <h1>CBSE Class 10 Planner • Aug–Dec 2025</h1>
+      <button class="btn primary" id="printBtn" title="Print or Save as PDF">Print</button>
+      <button class="btn warn" id="resetBtn" title="Uncheck everything">Reset All</button>
+      <div class="legend"><span class="dot"></span> Progress auto‑saves</div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- DAILY TIMETABLE (outside school hours) -->
+    <section class="section">
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span>Daily Timetable (excludes school)</span>
+            <span class="pill red" id="schoolNote">School: 08:00–15:00</span>
+          </div>
+          <span class="pill">Edit times below</span>
+        </summary>
+        <div class="month-body timetable">
+          <div class="slots" id="slots">
+            <!-- Morning -->
+            <div class="slot" data-slot="morning">
+              <h4>Morning Focus <span class="range" id="range-morning">05:30–08:00</span></h4>
+              <ul>
+                <li><input type="checkbox" class="tt"><span class="item-text">Formulas / Flashcards</span></li>
+                <li><input type="checkbox" class="tt"><span class="item-text">Reading (English/Hindi)</span></li>
+              </ul>
+            </div>
+            <!-- After-school -->
+            <div class="slot" data-slot="after">
+              <h4>After‑School <span class="range" id="range-after">16:00–18:00</span></h4>
+              <ul>
+                <li><input type="checkbox" class="tt"><span class="item-text">NCERT Exercises</span></li>
+                <li><input type="checkbox" class="tt"><span class="item-text">Map/Diagrams</span></li>
+              </ul>
+            </div>
+            <!-- Evening -->
+            <div class="slot" data-slot="evening">
+              <h4>Evening Deep Work <span class="range" id="range-evening">19:00–22:00</span></h4>
+              <ul>
+                <li><input type="checkbox" class="tt"><span class="item-text">PYQs / Mock</span></li>
+                <li><input type="checkbox" class="tt"><span class="item-text">Error‑log & Revise</span></li>
+              </ul>
+            </div>
+            <!-- Weekend -->
+            <div class="slot" data-slot="weekend">
+              <h4>Weekend Focus <span class="range" id="range-weekend">10:00–13:00</span></h4>
+              <ul>
+                <li><input type="checkbox" class="tt"><span class="item-text">Project work / Practicals</span></li>
+                <li><input type="checkbox" class="tt"><span class="item-text">Long‑form revision</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="controls-row">
+            <label>School Start <input type="time" id="schoolStart" value="08:00"></label>
+            <label>School End <input type="time" id="schoolEnd" value="15:00"></label>
+            <label>Morning <input type="time" id="mStart" value="05:30">–<input type="time" id="mEnd" value="08:00"></label>
+            <label>After‑School <input type="time" id="aStart" value="16:00">–<input type="time" id="aEnd" value="18:00"></label>
+            <label>Evening <input type="time" id="eStart" value="19:00">–<input type="time" id="eEnd" value="22:00"></label>
+            <label>Weekend <input type="time" id="wStart" value="10:00">–<input type="time" id="wEnd" value="13:00"></label>
+            <button class="btn" id="fitTT" title="Auto‑fit study blocks around school">Fit to school</button>
+            <button class="btn" id="saveTT">Save Timings</button>
+          </div>
+          <div class="mini">Timetable sections only allow study time <strong>outside</strong> your school hours on weekdays. Weekend slot ignores school timing.</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Helper: month progress summary populated by JS -->
+    <div id="monthSummaries" class="footer-note"></div>
+
+    <!-- ===== STUDY PLAN (Weeks) ===== -->
+    <!-- AUGUST -->
+    <section class="section">
+      <details class="month" open>
+        <summary>
+          <div class="summary-left">
+            <span>August (Foundation Month)</span>
+            <span class="pill" data-month-progress="aug">0% done</span>
+          </div>
+          <span class="pill">Start: Aug 26</span>
+        </summary>
+        <div class="month-body">
+          <div class="week" data-week="w1">
+            <h3>
+              Week 1 • Aug 26 – Sep 1
+              <span class="controls">
+                <label><input type="checkbox" data-check-all="w1"> Check all</label>
+              </span>
+            </h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Real Numbers – Euclid, HCF/LCM (Euclid/Euclidean Alg.)</span><span class="prio">A</span></li>
+                  <li><input type="checkbox"><span class="item-text">NCERT Ex. + 15 MCQs</span><span class="prio">B</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Chemical Reactions & Equations – types, balancing</span><span class="prio">A</span></li>
+                  <li><input type="checkbox"><span class="item-text">Lab: pH test & observations</span><span class="prio">B</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">History: Nationalism in Europe – timeline notes</span></li>
+                  <li><input type="checkbox"><span class="item-text">Map: Europe (key countries)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">First Flight: Ch.1 + Poem 1 – summary & Q/As</span></li>
+                  <li><input type="checkbox"><span class="item-text">Writing: Formal Letter practice (1)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">1 कहानी + 1 कविता (सारांश)</span></li>
+                  <li><input type="checkbox"><span class="item-text">पत्र लेखन (1)</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="progress" aria-label="Week 1 progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w2">
+            <h3>
+              Week 2 • Sep 2 – 8
+              <span class="controls"><label><input type="checkbox" data-check-all="w2"> Check all</label></span>
+            </h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Polynomials – zeros & relations, graphs</span></li>
+                  <li><input type="checkbox"><span class="item-text">Exemplar 10 Qs</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Acids, Bases & Salts – key reactions</span></li>
+                  <li><input type="checkbox"><span class="item-text">Numericals (pH, salts)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Geography: Resources & Development – soil types</span></li>
+                  <li><input type="checkbox"><span class="item-text">Case study notes</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">First Flight: Ch.2 + Poem 2</span></li>
+                  <li><input type="checkbox"><span class="item-text">Grammar: Tenses recap</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">1 कहानी + 1 कविता</span></li>
+                  <li><input type="checkbox"><span class="item-text">निबंध (1)</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w3">
+            <h3>
+              Week 3 • Sep 9 – 15
+              <span class="controls"><label><input type="checkbox" data-check-all="w3"> Check all</label></span>
+            </h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Pair of Linear Equations – elimination/substitution</span></li>
+                  <li><input type="checkbox"><span class="item-text">Word problems (5)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Life Processes: Nutrition & Respiration</span></li>
+                  <li><input type="checkbox"><span class="item-text">Diagram practice</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Civics: Power Sharing – notes</span></li>
+                  <li><input type="checkbox"><span class="item-text">PYQ practice (5)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Writing: Formal Letter (2)</span></li>
+                  <li><input type="checkbox"><span class="item-text">Grammar: Modals</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">1 कहानी + व्याकरण (संधि)</span></li>
+                  <li><input type="checkbox"><span class="item-text">पाठ्य प्रश्नोत्तर</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w4">
+            <h3>
+              Week 4 • Sep 16 – 22
+              <span class="controls"><label><input type="checkbox" data-check-all="w4"> Check all</label></span>
+            </h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Arithmetic Progressions – nth term, sum</span></li>
+                  <li><input type="checkbox"><span class="item-text">Mixed practice (10)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Life Processes: Transport & Excretion</span></li>
+                  <li><input type="checkbox"><span class="item-text">Short test (20 marks)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">History: Nationalism in India – notes</span></li>
+                  <li><input type="checkbox"><span class="item-text">Map practice (India)</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Poem 3 – figures of speech</span></li>
+                  <li><input type="checkbox"><span class="item-text">Grammar: Tenses full drill</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">1 कविता + 1 निबंध</span></li>
+                  <li><input type="checkbox"><span class="item-text">साप्ताहिक परीक्षण (हिंदी/अंग्रेज़ी)</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- SEPTEMBER -->
+    <section class="section">
+      <details class="month" open>
+        <summary>
+          <div class="summary-left">
+            <span>September (Core Concepts)</span>
+            <span class="pill" data-month-progress="sep">0% done</span>
+          </div>
+        </summary>
+        <div class="month-body">
+          <div class="week" data-week="w5">
+            <h3>Week 5 • Sep 23 – 29 <span class="controls"><label><input type="checkbox" data-check-all="w5"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Quadratic Equations – factor/complete square</span></li><li><input type="checkbox"><span class="item-text">Word problems (5)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Metals & Non‑metals – properties & reactions</span></li><li><input type="checkbox"><span class="item-text">Lab: Reactivity series</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Geography: Agriculture – cropping patterns</span></li><li><input type="checkbox"><span class="item-text">Map: crops</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.3 + Poem 4</span></li><li><input type="checkbox"><span class="item-text">Grammar drill</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कहानी + समास</span></li><li><input type="checkbox"><span class="item-text">लेखन अभ्यास</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w6">
+            <h3>Week 6 • Sep 30 – Oct 6 <span class="controls"><label><input type="checkbox" data-check-all="w6"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Triangles – similarity theorems</span></li><li><input type="checkbox"><span class="item-text">Exercise mix (10)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Control & Coordination – nervous system</span></li><li><input type="checkbox"><span class="item-text">Hormones overview</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Civics: Federalism – case studies</span></li><li><input type="checkbox"><span class="item-text">PYQs (5)</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Writing: Story Writing (1)</span></li><li><input type="checkbox"><span class="item-text">Ch. revision</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कविता + 1 कहानी</span></li><li><input type="checkbox"><span class="item-text">व्याकरण अभ्यास</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w7">
+            <h3>Week 7 • Oct 7 – 13 <span class="controls"><label><input type="checkbox" data-check-all="w7"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Circles – tangent theorems</span></li><li><input type="checkbox"><span class="item-text">Mixed problems (8)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Electricity – Ohm’s law, graphs</span></li><li><input type="checkbox"><span class="item-text">Numericals (10)</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">History: Print Culture – notes</span></li><li><input type="checkbox"><span class="item-text">Short test (15)</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.4 + Poem 5</span></li><li><input type="checkbox"><span class="item-text">Lit. Q/As</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कहानी + पत्र लेखन</span></li><li><input type="checkbox"><span class="item-text">शब्दार्थ/सारांश</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w8">
+            <h3>Week 8 • Oct 14 – 20 <span class="controls"><label><input type="checkbox" data-check-all="w8"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Trigonometry – ratios & identities</span></li><li><input type="checkbox"><span class="item-text">HOTS (5)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Electricity – circuits & heating effect</span></li><li><input type="checkbox"><span class="item-text">Practicals record update</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Civics: Gender, Religion & Caste</span></li><li><input type="checkbox"><span class="item-text">Case-based Qs (5)</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Analytical Paragraph (2)</span></li><li><input type="checkbox"><span class="item-text">Grammar drill</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कविता + निबंध</span></li><li><input type="checkbox"><span class="item-text">साप्ताहिक मॉक (आधा पाठ्यक्रम)</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- OCTOBER -->
+    <section class="section">
+      <details class="month" open>
+        <summary>
+          <div class="summary-left">
+            <span>October (Advanced Topics)</span>
+            <span class="pill" data-month-progress="oct">0% done</span>
+          </div>
+        </summary>
+        <div class="month-body">
+          <div class="week" data-week="w9">
+            <h3>Week 9 • Oct 21 – 27 <span class="controls"><label><input type="checkbox" data-check-all="w9"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Heights & Distances – applications</span></li><li><input type="checkbox"><span class="item-text">Word problems (6)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Carbon Compounds – nomenclature & reactions</span></li><li><input type="checkbox"><span class="item-text">Charts & mind‑map</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Geography: Minerals & Energy</span></li><li><input type="checkbox"><span class="item-text">Map: mines/power plants</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.5 + Poem 6</span></li><li><input type="checkbox"><span class="item-text">Q/As + RTCs</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कहानी + वाक्य शुद्धि</span></li><li><input type="checkbox"><span class="item-text">अभ्यास प्रश्न</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w10">
+            <h3>Week 10 • Oct 28 – Nov 3 <span class="controls"><label><input type="checkbox" data-check-all="w10"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Surface Areas & Volumes</span></li><li><input type="checkbox"><span class="item-text">Mixed practice (10)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Reproduction in Organisms</span></li><li><input type="checkbox"><span class="item-text">Diagram practice</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Civics: Political Parties</span></li><li><input type="checkbox"><span class="item-text">Case-based Qs (5)</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.6 + Notice Writing</span></li><li><input type="checkbox"><span class="item-text">Editing/Omission drill</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कविता + पत्र लेखन</span></li><li><input type="checkbox"><span class="item-text">अभ्यास प्रश्न</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- NOVEMBER -->
+    <section class="section">
+      <details class="month" open>
+        <summary>
+          <div class="summary-left">
+            <span>November (Completion + Revision)</span>
+            <span class="pill" data-month-progress="nov">0% done</span>
+          </div>
+        </summary>
+        <div class="month-body">
+          <div class="week" data-week="w11">
+            <h3>Week 11 • Nov 4 – 10 <span class="controls"><label><input type="checkbox" data-check-all="w11"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Statistics – mean/median/mode</span></li><li><input type="checkbox"><span class="item-text">Graphs practice</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Light – reflection & refraction</span></li><li><input type="checkbox"><span class="item-text">Numericals (10)</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Geography: Manufacturing Industries</span></li><li><input type="checkbox"><span class="item-text">Case study Qs</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.7 + Poem 7</span></li><li><input type="checkbox"><span class="item-text">Paragraph writing</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कहानी + निबंध</span></li><li><input type="checkbox"><span class="item-text">व्याकरण रिविज़न</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w12">
+            <h3>Week 12 • Nov 11 – 17 <span class="controls"><label><input type="checkbox" data-check-all="w12"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Probability – classical approach</span></li><li><input type="checkbox"><span class="item-text">PYQ set</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Heredity & Evolution – Mendel laws</span></li><li><input type="checkbox"><span class="item-text">Short test (20)</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Economics: Development & Sectors</span></li><li><input type="checkbox"><span class="item-text">Case-based Qs</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.8 + Speech</span></li><li><input type="checkbox"><span class="item-text">RTCs practice</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">1 कविता + मुहावरे</span></li><li><input type="checkbox"><span class="item-text">रचना‑कौशल अभ्यास</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w13">
+            <h3>Week 13 • Nov 18 – 24 <span class="controls"><label><input type="checkbox" data-check-all="w13"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Coordinate Geometry – distance/section</span></li><li><input type="checkbox"><span class="item-text">Mixed problems (10)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Magnetic Effects of Electric Current</span></li><li><input type="checkbox"><span class="item-text">Lab record completion</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Economics: Money & Credit</span></li><li><input type="checkbox"><span class="item-text">Case-based Qs</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.9 + Poem 8</span></li><li><input type="checkbox"><span class="item-text">Writing review</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">पत्र लेखन + संवाद लेखन</span></li><li><input type="checkbox"><span class="item-text">PYQ अभ्यास</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w14">
+            <h3>Week 14 • Nov 25 – Dec 1 <span class="controls"><label><input type="checkbox" data-check-all="w14"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Algebra & Geometry – full revision</span></li><li><input type="checkbox"><span class="item-text">Mock test (1)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Our Environment & Resources</span></li><li><input type="checkbox"><span class="item-text">Mock test (1)</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Globalisation & Consumer Rights (Project)</span></li><li><input type="checkbox"><span class="item-text">Map work revision</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Ch.10 + Writing Skills revision</span></li><li><input type="checkbox"><span class="item-text">Grammar final drill</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">त्वरित पुनरावृत्ति (सभी)</span></li><li><input type="checkbox"><span class="item-text">लघु परीक्षण</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- DECEMBER -->
+    <section class="section">
+      <details class="month" open>
+        <summary>
+          <div class="summary-left">
+            <span>December (Final Revision + Tests)</span>
+            <span class="pill" data-month-progress="dec">0% done</span>
+          </div>
+        </summary>
+        <div class="month-body">
+          <div class="week" data-week="w15">
+            <h3>Week 15 • Dec 2 – 8 <span class="controls"><label><input type="checkbox" data-check-all="w15"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Formula sheet + HOTS</span></li><li><input type="checkbox"><span class="item-text">Full paper (1)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Key definitions + diagrams</span></li><li><input type="checkbox"><span class="item-text">Full paper (1)</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">History/Geo revision</span></li><li><input type="checkbox"><span class="item-text">Map work drill</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Literature summaries</span></li><li><input type="checkbox"><span class="item-text">Grammar set</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">साहित्य + व्याकरण पुनरावृत्ति</span></li><li><input type="checkbox"><span class="item-text">अभ्यास पत्र (1)</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w16">
+            <h3>Week 16 • Dec 9 – 15 <span class="controls"><label><input type="checkbox" data-check-all="w16"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Civics & Economics revision</span></li><li><input type="checkbox"><span class="item-text">Full paper (1)</span></li></ul></div>
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Targeted weak areas (10 Qs)</span></li><li><input type="checkbox"><span class="item-text">Speed drill (30 Qs)</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Numericals pack</span></li><li><input type="checkbox"><span class="item-text">Diagrams pack</span></li></ul></div>
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Reading comprehension (2)</span></li><li><input type="checkbox"><span class="item-text">Writing: speech/notice</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">अति‑संक्षिप्त उत्तर अभ्यास</span></li><li><input type="checkbox"><span class="item-text">रचना‑कौशल (2)</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w17">
+            <h3>Week 17 • Dec 16 – 22 <span class="controls"><label><input type="checkbox" data-check-all="w17"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>English <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Lit. + Grammar final review</span></li><li><input type="checkbox"><span class="item-text">Full paper (1)</span></li></ul></div>
+              <div class="card"><h4>Hindi <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">साहित्य संपूर्ण पुनरावृत्ति</span></li><li><input type="checkbox"><span class="item-text">पूर्ण प्रश्नपत्र (1)</span></li></ul></div>
+              <div class="card"><h4>Maths <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Mixed paper (1)</span></li><li><input type="checkbox"><span class="item-text">Error log update</span></li></ul></div>
+              <div class="card"><h4>Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Mixed paper (1)</span></li><li><input type="checkbox"><span class="item-text">Viva‑style Qs (20)</span></li></ul></div>
+              <div class="card"><h4>Social Science <span class="badge" data-count="">0/2</span></h4><ul class="checklist"><li><input type="checkbox"><span class="item-text">Timelines recap</span></li><li><input type="checkbox"><span class="item-text">Map test (self)</span></li></ul></div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+
+          <div class="week" data-week="w18">
+            <h3>Week 18 • Dec 23 – 29 <span class="controls"><label><input type="checkbox" data-check-all="w18"> Check all</label></span></h3>
+            <div class="grid">
+              <div class="card"><h4>Mocks <span class="badge" data-count="">0/3</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Full Syllabus Mock – 1 (All subjects across week)</span></li>
+                  <li><input type="checkbox"><span class="item-text">Full Syllabus Mock – 2</span></li>
+                  <li><input type="checkbox"><span class="item-text">Full Syllabus Mock – 3</span></li>
+                </ul>
+              </div>
+              <div class="card"><h4>Analysis <span class="badge" data-count="">0/2</span></h4>
+                <ul class="checklist">
+                  <li><input type="checkbox"><span class="item-text">Review mistakes & make error log</span></li>
+                  <li><input type="checkbox"><span class="item-text">Final formula/definition flashcards</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="progress"><span></span></div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <p class="footer-note">Tip: Use <strong>Print</strong> to save a PDF version. Your checkbox progress, custom tasks and timetable are stored locally on your device and will auto‑restore next time.</p>
+  </div>
+
+  <script>
+    // ===== Persistent Checklist Logic =====
+    const STORAGE_KEY = 'cbse10_planner_v3_redwhite';
+    const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+    function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); updateAllProgress(); }
+
+    // Enhance every card with an add-row for custom items (persisted)
+    document.querySelectorAll('.week').forEach((weekEl) => {
+      const weekId = weekEl.getAttribute('data-week');
+      state[weekId] = state[weekId] || {};
+
+      const cards = weekEl.querySelectorAll('.card');
+      cards.forEach((cardEl, cIdx)=>{
+        // Add input UI
+        const add = document.createElement('div');
+        add.className = 'add-row';
+        add.innerHTML = `<input type="text" placeholder="Add your own task (e.g. \"Ex 3.4 Q1‑5 [30m]\")" maxlength="120" /><button class="btn">Add</button>`;
+        cardEl.appendChild(add);
+
+        // Restore custom tasks for this card
+        const list = cardEl.querySelector('ul.checklist');
+        const customKey = `custom_${weekId}_${cIdx}`;
+        const custom = state[customKey] || [];
+        if (Array.isArray(custom)){
+          custom.forEach((it, i)=>{
+            const li = document.createElement('li');
+            li.innerHTML = `<input type="checkbox" ${it.done?'checked':''}><span class="item-text"></span>`;
+            li.querySelector('.item-text').textContent = it.text;
+            list.appendChild(li);
+          });
+        }
+
+        // Add handler
+        const input = add.querySelector('input');
+        const btn = add.querySelector('button');
+        function addTask(){
+          const val = input.value.trim();
+          if(!val) return;
+          const li = document.createElement('li');
+          // Optional priority chip if user types [A]/[B]/[C] or !
+          const prio = /\[(A|B|C)\]|!/.exec(val)?.[1] || (val.includes('!')?'A':null);
+          li.innerHTML = `<input type="checkbox"><span class="item-text"></span>${prio?`<span class="prio">${prio}</span>`:''}`;
+          li.querySelector('.item-text').textContent = val.replace(/\[(A|B|C)\]|!/g,'').trim();
+          list.appendChild(li);
+          // Persist
+          const arr = state[customKey] || [];
+          arr.push({text: li.querySelector('.item-text').textContent, done:false});
+          state[customKey] = arr; save();
+          input.value = '';
+          bindBox(li.querySelector('input'), weekId);
+          updateCardBadges(weekEl);
+        }
+        btn.addEventListener('click', addTask);
+        input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') addTask(); });
+      });
+
+      // Attach to all weekly checkboxes, store by week + index (static items)
+      const boxes = weekEl.querySelectorAll('input[type="checkbox"]:not([data-check-all]):not(.tt)');
+      boxes.forEach((box, i) => bindBox(box, weekId, i));
+
+      // Check-all
+      const checkAll = weekEl.querySelector('input[data-check-all]');
+      if (checkAll){
+        checkAll.addEventListener('change', () => {
+          const allBoxes = weekEl.querySelectorAll('input[type="checkbox"]:not([data-check-all])');
+          allBoxes.forEach((b) => {
+            b.checked = checkAll.checked;
+            if (b.closest('li')) b.closest('li').classList.toggle('done', b.checked);
+          });
+          // Update static state
+          const staticBoxes = weekEl.querySelectorAll('ul.checklist li input[type="checkbox"]');
+          staticBoxes.forEach((b, i)=>{ state[weekId][i.toString()] = b.checked; });
+          // Update custom state
+          weekEl.querySelectorAll('.card').forEach((cardEl, cIdx)=>{
+            const customKey = `custom_${weekId}_${cIdx}`;
+            const list = cardEl.querySelectorAll('ul.checklist li input[type="checkbox"]');
+            const baseLen = cardEl.querySelectorAll('ul.checklist li').length;
+            const customArr = Array.from(list).slice(0).map((cb, i)=>({cb,i}));
+            const arr = state[customKey] || [];
+            arr.forEach((it, k)=>{ it.done = checkAll.checked; });
+            state[customKey] = arr;
+          });
+          save();
+          updateCardBadges(weekEl);
+        });
+      }
+
+      // Initial per-card badge counts
+      updateCardBadges(weekEl);
+    });
+
+    function bindBox(box, weekId, i){
+      const li = box.closest('li');
+      if (weekId && i!==undefined){
+        // static items restore
+        if (state[weekId][i.toString()]) box.checked = true;
+      }
+      if (li) li.classList.toggle('done', box.checked);
+      box.addEventListener('change', () => {
+        if (li) li.classList.toggle('done', box.checked);
+        if (weekId && i!==undefined){
+          state[weekId][i.toString()] = box.checked;
+        } else {
+          // custom item: locate its card and update its custom array by index
+          const weekEl = box.closest('.week');
+          const cardEl = box.closest('.card');
+          const week = weekEl.getAttribute('data-week');
+          const cIdx = Array.from(weekEl.querySelectorAll('.card')).indexOf(cardEl);
+          const customKey = `custom_${week}_${cIdx}`;
+          const items = Array.from(cardEl.querySelectorAll('ul.checklist li'));
+          const idx = items.indexOf(li);
+          const baseCount = cardEl.querySelectorAll('ul.checklist li').length;
+          const arr = state[customKey] || [];
+          const customIdx = idx - (items.length - arr.length);
+          if (arr[customIdx]) arr[customIdx].done = box.checked;
+          state[customKey] = arr;
+        }
+        save();
+        updateCardBadges(document);
+      });
+    }
+
+    function updateCardBadges(scope=document){
+      scope.querySelectorAll('.card').forEach(card =>{
+        const items = card.querySelectorAll('ul.checklist li input[type="checkbox"]');
+        const done = Array.from(items).filter(b=>b.checked).length;
+        const badge = card.querySelector('[data-count]');
+        if (badge){ badge.textContent = `${done}/${items.length}`; }
+      });
+    }
+
+    // Week progress + Month pills
+    function weekProgress(weekEl){
+      const boxes = weekEl.querySelectorAll('input[type="checkbox"]:not([data-check-all])');
+      const done = Array.from(boxes).filter(b => b.checked).length;
+      const pct = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+      weekEl.querySelector('.progress span').style.width = pct + '%';
+      return pct;
+    }
+
+    function updateAllProgress(){
+      document.querySelectorAll('.week').forEach(weekEl => weekProgress(weekEl));
+      const monthMap = { aug:['w1','w2','w3','w4'], sep:['w5','w6','w7','w8'], oct:['w9','w10'], nov:['w11','w12','w13','w14'], dec:['w15','w16','w17','w18'] };
+      Object.entries(monthMap).forEach(([mon,weeks])=>{
+        const weekEls = weeks.map(id=>document.querySelector(`.week[data-week="${id}"]`)).filter(Boolean);
+        const avg = weekEls.length? Math.round(weekEls.map(weekProgress).reduce((a,b)=>a+b,0)/weekEls.length):0;
+        const pill = document.querySelector(`[data-month-progress="${mon}"]`);
+        if (pill) pill.textContent = `${avg}% done`;
+      });
+      const monthSummaries = document.getElementById('monthSummaries');
+      const labels = {aug:'August', sep:'September', oct:'October', nov:'November', dec:'December'};
+      const lines = [];
+      Object.keys(labels).forEach(m=>{
+        const pill = document.querySelector(`[data-month-progress="${m}"]`);
+        if (pill) lines.push(`${labels[m]}: ${pill.textContent}`);
+      });
+      monthSummaries.textContent = lines.join('  •  ');
+    }
+
+    // ===== Timetable (outside school hours) =====
+    const TT_KEY = 'cbse10_timetable_v2';
+    const tt = JSON.parse(localStorage.getItem(TT_KEY) || '{}');
+    const qs = sel => document.querySelector(sel);
+
+    function timeStrToMin(t){ const [h,m] = t.split(':').map(Number); return h*60 + m; }
+    function minToTimeStr(min){ const h = Math.floor(min/60).toString().padStart(2,'0'); const m = (min%60).toString().padStart(2,'0'); return `${h}:${m}`; }
+    function setRange(id, start, end){ const el = document.getElementById('range-'+id); if(el) el.textContent = `${start}–${end}`; }
+
+    function applyOverlapGuard(){
+      const schoolStart = qs('#schoolStart').value; const schoolEnd = qs('#schoolEnd').value;
+      const sS = timeStrToMin(schoolStart), sE = timeStrToMin(schoolEnd);
+      [ ['morning','mStart','mEnd'], ['after','aStart','aEnd'], ['evening','eStart','eEnd'] ].forEach(([id, s, e])=>{
+        const start = timeStrToMin(qs('#'+s).value), end = timeStrToMin(qs('#'+e).value);
+        const overlap = Math.max(0, Math.min(end, sE) - Math.max(start, sS)) > 0;
+        const el = document.querySelector(`.slot[data-slot="${id}"]`);
+        if (!el) return;
+        el.style.background = overlap ? '#fff5f5' : '#fff';
+        el.style.borderColor = overlap ? '#fecaca' : getComputedStyle(document.documentElement).getPropertyValue('--border');
+        el.querySelectorAll('input.tt').forEach(cb=>{ cb.disabled = overlap; if (overlap) cb.checked = false; });
+      });
+    }
+
+    function saveTT(){
+      const schoolStart = qs('#schoolStart').value; const schoolEnd = qs('#schoolEnd').value;
+      const mStart = qs('#mStart').value, mEnd = qs('#mEnd').value;
+      const aStart = qs('#aStart').value, aEnd = qs('#aEnd').value;
+      const eStart = qs('#eStart').value, eEnd = qs('#eEnd').value;
+      const wStart = qs('#wStart').value, wEnd = qs('#wEnd').value;
+      tt.schoolStart = schoolStart; tt.schoolEnd = schoolEnd;
+      Object.assign(tt, {mStart,mEnd,aStart,aEnd,eStart,eEnd,wStart,wEnd});
+      localStorage.setItem(TT_KEY, JSON.stringify(tt));
+      qs('#schoolNote').textContent = `School: ${schoolStart}–${schoolEnd}`;
+      setRange('morning', mStart + '', mEnd + '');
+      setRange('after', aStart + '', aEnd + '');
+      setRange('evening', eStart + '', eEnd + '');
+      setRange('weekend', wStart + '', wEnd + '');
+      applyOverlapGuard();
+    }
+
+    // Fit blocks around school automatically
+    document.getElementById('fitTT').addEventListener('click', ()=>{
+      const schoolStart = timeStrToMin(qs('#schoolStart').value);
+      const schoolEnd = timeStrToMin(qs('#schoolEnd').value);
+      // Morning ends at school start
+      qs('#mStart').value = '05:30';
+      qs('#mEnd').value = minToTimeStr(Math.max(6*60, schoolStart));
+      // After-school starts at school end
+      qs('#aStart').value = minToTimeStr(schoolEnd);
+      qs('#aEnd').value = minToTimeStr(Math.min(schoolEnd + 120, 21*60));
+      // Evening default
+      qs('#eStart').value = '19:00';
+      qs('#eEnd').value = '22:00';
+      saveTT();
+    });
+
+    // Restore TT
+    ['schoolStart','schoolEnd','mStart','mEnd','aStart','aEnd','eStart','eEnd','wStart','wEnd'].forEach(id=>{
+      if (tt[id]) qs('#'+id).value = tt[id];
+    });
+    saveTT();
+
+    // Persist timetable checkboxes too
+    document.querySelectorAll('.slot input.tt').forEach((cb, i)=>{
+      const key = 'tt_'+i;
+      if (state[key]) cb.checked = true;
+      cb.addEventListener('change', ()=>{ state[key] = cb.checked; save(); });
+    });
+
+    document.getElementById('saveTT').addEventListener('click', saveTT);
+
+    // ===== Initial draw =====
+    updateAllProgress();
+
+    // Print & Reset
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (!confirm('Uncheck everything and reset timetable? (Custom tasks too)')) return;
+      Object.keys(state).forEach(k => delete state[k]);
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(TT_KEY);
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      updateCardBadges(document);
+      updateAllProgress();
+    });
+  </script>
+</body>
+</html>
